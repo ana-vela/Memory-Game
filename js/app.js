@@ -68,7 +68,8 @@ ul.classList.add('deck');
 let allCards = document.querySelectorAll('.card');
 let openCards = [];
 let matchedCards = [];
-let openedCard;
+let moves = 0;
+let movesTotal = [];
 
 allCards.forEach(function(card){
   card.addEventListener('click', function(e) {
@@ -77,6 +78,8 @@ allCards.forEach(function(card){
     openCards.push(card);
     card.classList.add('open', 'show');
     console.log('Open Cards:', openCards.length);
+    movesTotal.push(moves);
+    console.log(movesTotal.length);
 
       if (openCards.length == 2) {
 
