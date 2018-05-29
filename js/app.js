@@ -37,69 +37,65 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-const cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube', 'fa-anchor', 'fa-anchor', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle'];
+const cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle', 'fa-bomb', 'fa-bomb'];
+
+function startGame () {
+  shuffle(cards);
+};
+
+startGame();
 
 let ul = document.createElement('ul');
 document.getElementById('template').appendChild(ul);
 ul.classList.add('deck');
 
-// let li = document.createElement('li');
+  cards.forEach(function(card) {
 
+    let li = document.createElement('li');
+    ul.appendChild(li);
+    li.classList.add('card');
 
-cards.forEach(function(card) {
-  let li = document.createElement('li');
-  ul.appendChild(li);
-  li.classList.add('card');
-
-  let i = document.createElement('i');
-
+    let i = document.createElement('i');
     li.appendChild(i);
     for (var j = 0; j < cards.length; j++) {
-      i.classList.add('fa', card);
+    i.classList.add('fa', card);
+
   };
 
-  // i.classList.add('cards');
-  // console.log(cards[i]);
-  // i.classList.push(...cardsArray);
-// i.arrayList.add(cards);
-  // i.innerHTML += "cards";
-// }
 });
+
 
 let allCards = document.querySelectorAll('.card');
 let openCards = [];
+let matchedCards = [];
+let openedCard;
 
-allCards.forEach(function(card) {
+allCards.forEach(function(card){
   card.addEventListener('click', function(e) {
 
+    if (!card.classList.contains('open') && !card.classList.contains('show')) {
     openCards.push(card);
-
-    if (openCards.length >= 5) {
-      //hide
-
-    } else {
-
     card.classList.add('open', 'show');
+    console.log('Open Cards:', openCards.length);
 
-    console.log(card.classList);
-    console.log(card);
-    // console.log(cardTemplate.card);
-        // console.log(fa.classList);
+      if (openCards.length == 2) {
 
-  // console.log(e);
+        if (openCards[0].innerHTML == openCards[1].innerHTML) {
+          console.log("match");
+          openCards[0].classList.add('match', 'open', 'show');
+          openCards[1].classList.add('match', 'open', 'show');
+          openCards = [];
 
-}
+        } else {
+
+          setTimeout(function() {
+            openCards.forEach(function(card) {
+              card.classList.remove('open', 'show');
+            });
+            openCards = [];
+          }, 700);
+        }
+      }
+    }
+  });
 });
-
-});
-
-/*function matching () {
-
-  if (allCards.card [0] == allCards.card [1]) {
-    card.classList.add('match');
-    } else {
-    //hide card
-    console.log('not a match');
-  }
-  };
-*/
