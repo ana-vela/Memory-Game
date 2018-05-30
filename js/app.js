@@ -80,6 +80,8 @@ allCards.forEach(function(card){
     console.log('Open Cards:', openCards.length);
     movesTotal.push(moves);
     console.log(movesTotal.length);
+    const totalMoves = document.querySelector('.moves');
+    totalMoves.textContent = movesTotal.length;
 
       if (openCards.length == 2) {
 
