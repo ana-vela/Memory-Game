@@ -83,6 +83,17 @@ allCards.forEach(function(card){
     const totalMoves = document.querySelector('.moves');
     totalMoves.textContent = movesTotal.length;
 
+      if (movesTotal.length <= 4) {
+        const yellowStars = document.querySelector('.stars');
+        yellowStars.style.color = 'yellow';
+        // yellowStars.textContent.innerHTML(color: yellow;);
+        console.log("3 stars");
+      } else if (movesTotal.length <= 10) {
+        console.log("2 stars");
+      } else {
+        console.log("1 star");
+      }
+
       if (openCards.length == 2) {
 
         if (openCards[0].innerHTML == openCards[1].innerHTML) {
