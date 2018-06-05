@@ -83,15 +83,18 @@ allCards.forEach(function(card){
     const totalMoves = document.querySelector('.moves');
     totalMoves.textContent = movesTotal.length;
 
-      if (movesTotal.length <= 4) {
+
+      if (movesTotal.length <= 1) {
         const yellowStars = document.querySelector('.stars');
-        yellowStars.style.color = 'yellow';
-        // yellowStars.textContent.innerHTML(color: yellow;);
-        console.log("3 stars");
-      } else if (movesTotal.length <= 10) {
-        console.log("2 stars");
-      } else {
-        console.log("1 star");
+        yellowStars.style.color = '#FFA500';
+
+      } else if (movesTotal.length >= 4 && movesTotal.length <=7) {
+
+            console.log("2 stars");
+            document.getElementById('star1').style.color = 'grey';
+          } else if (movesTotal.length >= 8  ){
+
+            document.getElementById('star2').style.color = 'grey';
       }
 
       if (openCards.length == 2) {
