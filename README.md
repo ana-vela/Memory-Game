@@ -3,7 +3,7 @@
 
 # Introduction
 
-  This is my memory game for Udacity Front End Nanodegree program (project 2). I used HTML, CSS, and JavaScript for this game. I used various resources which have been noted. 
+  This is my memory game for the Udacity Front End Nanodegree program (project 2). I used HTML, CSS, and JavaScript for this game. I used various resources which have been noted. 
  
  
  # Directions
