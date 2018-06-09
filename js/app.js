@@ -38,11 +38,10 @@ function shuffle(array) {
  */
 
 const cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle', 'fa-bomb', 'fa-bomb'];
-// const modal = document.querySelector(".modal");
 
 function startGame () {
   shuffle(cards);
-};
+}
 
 //Timer function from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
 
@@ -54,8 +53,9 @@ setInterval(function(){
     document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
 }, 1000);
 
-};
+}
 
+//When game finishes and modal appears
 
 function endGame () {
 
@@ -71,14 +71,13 @@ function endGame () {
 
   let totalMoves = movesTotal.length;
   movesFinal.innerHTML = `${totalMoves}`;
-  if (totalMoves <= 25) {
+  if (totalMoves <= 20) {
     starTotal.innerHTML = '3';
-  } else if(totalMoves >= 25 && totalMoves <= 16) {
+  } else if(totalMoves >= 35 && totalMoves <= 20) {
     starTotal.innerHTML = '2';
   } else {
     starTotal.innerHTML = '1';
-  };
-
+  }
 }
 
 //restart and reset inspired from https://stackoverflow.com/questions/6666363/is-it-possible-to-clear-a-form-and-reset-reload-the-page-with-one-button
@@ -87,17 +86,17 @@ document.querySelector(".restart").addEventListener("click", restartGame);
 
 function restartGame(){
   window.location.href = window.location.href;
-};
-
+}
 
 reset.addEventListener("click", resetGame);
 
 function resetGame() {
   window.location.href = window.location.href;
-};
+}
 
 startGame();
 
+//guidance for dynamically generating cards https://www.vitoshacademy.com/javascript-create-ul-and-li-elements-with-js-with-chained-function/
 let ul = document.createElement('ul');
 document.getElementById('template').appendChild(ul);
 ul.classList.add('deck');
@@ -112,16 +111,15 @@ ul.classList.add('deck');
     li.appendChild(i);
     for (var j = 0; j < cards.length; j++) {
     i.classList.add('fa', card);
-  };
+  }
 });
 
-
+//thankful for this webinar that helped me get started: https://www.youtube.com/watch?v=_rUH-sEs68Y
 let allCards = document.querySelectorAll('.card');
 let openCards = [];
 let matchedCards = [];
 let moves = 0;
 let movesTotal = [];
-
 
 allCards.forEach(function(card){
 
@@ -140,11 +138,10 @@ allCards.forEach(function(card){
         const yellowStars = document.querySelector('.stars');
         yellowStars.style.color = '#FFA500';
 
-      } else if (movesTotal.length >= 16 && movesTotal.length <=25) {
+      } else if (movesTotal.length >= 20 && movesTotal.length <=35) {
 
-            console.log("2 stars");
             document.getElementById('star1').style.color = 'grey';
-          } else if (movesTotal.length >= 26  ){
+          } else if (movesTotal.length >= 36  ){
 
             document.getElementById('star2').style.color = 'grey';
       }
@@ -161,7 +158,6 @@ allCards.forEach(function(card){
           console.log(matchedCards.length);
           console.log(document.getElementsByClassName('match').length);
 
-
         } else {
 
           setTimeout(function() {
@@ -173,9 +169,9 @@ allCards.forEach(function(card){
         }
       }
     }
+
     if (document.getElementsByClassName('match').length == 16 ) {
       endGame();
-      setTime = 0;
-    };
+    }
   });
 });

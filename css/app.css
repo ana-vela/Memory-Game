@@ -130,3 +130,28 @@ h1 {
      margin: 20% auto;
      width: 50%;
  }
+
+ @media only screen and (min-width: 500px) and (max-width: 760px) {
+
+   .deck {
+    max-width: 490px;
+    max-height: 500px;
+    margin: 10px;
+   }
+   .deck .card {
+     height: 100px;
+     width: 90px;
+   }
+ }
+
+@media only screen and (max-width: 499px) {
+  .deck {
+    max-width: 375px;
+    max-height: 499px;
+  }
+  .deck .card {
+    height: 60px;
+    width: 50px;
+  }
+
+}
