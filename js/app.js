@@ -38,9 +38,62 @@ function shuffle(array) {
  */
 
 const cards = ['fa-diamond', 'fa-diamond', 'fa-paper-plane-o', 'fa-paper-plane-o', 'fa-anchor', 'fa-anchor', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle', 'fa-bomb', 'fa-bomb'];
+// const modal = document.querySelector(".modal");
 
 function startGame () {
   shuffle(cards);
+};
+
+//Timer function from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+
+function timer () {
+var sec = 0;
+function pad ( val ) { return val > 9 ? val : "0" + val; }
+setInterval(function(){
+    document.getElementById("seconds").innerHTML=pad(++sec%60);
+    document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
+}, 1000);
+
+};
+
+
+function endGame () {
+
+  const modal = document.querySelector(".modal");
+
+  modal.style.display = "block";
+
+  let totalSeconds = document.getElementById("seconds").innerHTML;
+  let totalMinutes = document.getElementById("minutes").innerHTML;
+
+  finalSeconds.innerHTML = `${totalSeconds}`;
+  finalMinutes.innerHTML = `${totalMinutes}`;
+
+  let totalMoves = movesTotal.length;
+  movesFinal.innerHTML = `${totalMoves}`;
+  if (totalMoves <= 25) {
+    starTotal.innerHTML = '3';
+  } else if(totalMoves >= 25 && totalMoves <= 16) {
+    starTotal.innerHTML = '2';
+  } else {
+    starTotal.innerHTML = '1';
+  };
+
+}
+
+//restart and reset inspired from https://stackoverflow.com/questions/6666363/is-it-possible-to-clear-a-form-and-reset-reload-the-page-with-one-button
+
+document.querySelector(".restart").addEventListener("click", restartGame);
+
+function restartGame(){
+  window.location.href = window.location.href;
+};
+
+
+reset.addEventListener("click", resetGame);
+
+function resetGame() {
+  window.location.href = window.location.href;
 };
 
 startGame();
@@ -59,9 +112,7 @@ ul.classList.add('deck');
     li.appendChild(i);
     for (var j = 0; j < cards.length; j++) {
     i.classList.add('fa', card);
-
   };
-
 });
 
 
@@ -71,9 +122,10 @@ let matchedCards = [];
 let moves = 0;
 let movesTotal = [];
 
-allCards.forEach(function(card){
-  card.addEventListener('click', function(e) {
 
+allCards.forEach(function(card){
+
+  card.addEventListener('click', function(e) {
     if (!card.classList.contains('open') && !card.classList.contains('show')) {
     openCards.push(card);
     card.classList.add('open', 'show');
@@ -83,16 +135,16 @@ allCards.forEach(function(card){
     const totalMoves = document.querySelector('.moves');
     totalMoves.textContent = movesTotal.length;
 
-
       if (movesTotal.length <= 1) {
+        timer();
         const yellowStars = document.querySelector('.stars');
         yellowStars.style.color = '#FFA500';
 
-      } else if (movesTotal.length >= 4 && movesTotal.length <=7) {
+      } else if (movesTotal.length >= 16 && movesTotal.length <=25) {
 
             console.log("2 stars");
             document.getElementById('star1').style.color = 'grey';
-          } else if (movesTotal.length >= 8  ){
+          } else if (movesTotal.length >= 26  ){
 
             document.getElementById('star2').style.color = 'grey';
       }
@@ -105,6 +157,11 @@ allCards.forEach(function(card){
           openCards[1].classList.add('match', 'open', 'show');
           openCards = [];
 
+          matchedCards.push(card);
+          console.log(matchedCards.length);
+          console.log(document.getElementsByClassName('match').length);
+
+
         } else {
 
           setTimeout(function() {
@@ -116,5 +173,9 @@ allCards.forEach(function(card){
         }
       }
     }
+    if (document.getElementsByClassName('match').length == 16 ) {
+      endGame();
+      setTime = 0;
+    };
   });
 });

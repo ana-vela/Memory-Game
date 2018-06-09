@@ -107,3 +107,26 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * Modal
+ */
+
+ .modal {
+
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    display: none;
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+    left: 0;
+    top: 0;
+
+ }
+ .modal-content {
+     background: yellow;
+     padding: 40px;
+     margin: 20% auto;
+     width: 50%;
+ }

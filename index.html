@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <meta name=“viewport”; content=“width=device-width, initial-scale=1.0”>
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -24,11 +25,33 @@
 
         	<span class="moves">0</span> Moves
 
+          <div class="timer">
+          <span id="minutes"> 00 </span> : <span id="seconds">00</span>
+          </div>
+
             <div class="restart">
-        		<i class="fa fa-repeat"></i>
+        		<button input type="button" ><i class="fa fa-repeat"></i></button>
         	</div>
         </section>
-<div id="template"> </div>
+    <div id="template"> </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span id="close-button">X</span>
+                <h1>Congratuations!</h1>
+                <h2>Game Stats</h2>
+
+                <p class="info">
+                  Moves: <span id="movesFinal"></span> <br>
+                   Time: <span id="finalMinutes"> 00 </span>:<span id="finalSeconds">00</span> <br>
+           Stars Earned: <span id="starTotal"></span> <br>
+
+                    </p>
+
+                    <button id="reset" input type="button" >Play Again</button>
+
+          </div>
+    </div>
     <script src="js/app.js"></script>
 </body>
 </html>
